@@ -1,45 +1,63 @@
 package com.baeksh.quickreserve.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
+import java.util.Date;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.List;
+import com.baeksh.quickreserve.service.UserDetailsServiceImpl;
 
-@Component  // 스피링 bean
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+@Component
 public class JwtTokenProvider {
 
-    @Value("${jwt.secret}")  // application.properties 정의된 jwt.secret 값으로 설정(실제 환경에서는 외부에서)
-    private String secretKey;  // JWT 서명에 사용할 시크릿 키
+    private final String secretKey = "Wmc9qK8Nw5tRjo5K5c7eP1hsztAXpPzVm3/7xFZiJ38=";
+    private final long TOKEN_EXPIRE_TIME = 1000 * 60 * 60; // 1 hour
+    private final UserDetailsServiceImpl userDetailsService;
 
-    // JWT 토큰의 만료 시간 설정 (1시간)
-    private static final long TOKEN_EXPIRE_TIME = 1000 * 60 * 60; // 1 hour
+    public JwtTokenProvider(UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
-    /**
-     * JWT 토큰 생성 메서드
-     * @param username 사용자 이름
-     * @param roles 사용자 권한 목록 (ADMIN, READ, WRITE 등)
-     * @return 생성된 JWT 토큰 문자열
-     */
-    public String generateToken(String username, List<String> roles) {
-        // 클레임에 사용자 이름과 권한을 추가
+    // 토큰 생성
+    public String generateToken(String username, java.util.List<String> roles) {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("roles", roles);
-
-        // 현재 시간과 만료 시간
         Date now = new Date();
         Date validity = new Date(now.getTime() + TOKEN_EXPIRE_TIME);
-
-        // JWT 토큰을 생성하고 서명 알고리즘과 시크릿 키를 사용해 서명
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(validity)
-                .signWith(SignatureAlgorithm.HS256, secretKey)  // SHA-256
-                .compact();  //토큰 문자열 반환
+                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .compact();
+    }
+
+    // 토큰 검증
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    // 토큰에서 사용자 정보 추출
+    public Authentication getAuthentication(String token) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername(token));
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+    }
+
+    // 토큰에서 사용자 이름 추출
+    public String getUsername(String token) {
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 }
 

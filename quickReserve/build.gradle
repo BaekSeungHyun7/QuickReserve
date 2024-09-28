@@ -21,6 +21,9 @@ dependencies {
     // Spring Boot Web dependency for creating REST APIs
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+// Spring Security 의존성 (JWT와 함께 인증/인가 처리)
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    
     // Spring Data JPA for working with the database
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     
@@ -36,9 +39,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    // Spring Security 의존성 (JWT와 함께 인증/인가 처리)
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-
     // Test 관련 의존성
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -46,3 +46,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-parameters'
+}
+
