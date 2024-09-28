@@ -26,5 +26,7 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<RestaurantEntity> restaurants;  // 매장과의 연관관계 (1:N)
+    
+    private String phoneNumber;  // 전화번호
 }
 

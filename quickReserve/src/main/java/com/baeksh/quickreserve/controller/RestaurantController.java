@@ -5,9 +5,9 @@ import com.baeksh.quickreserve.service.RestaurantService;
 import com.baeksh.quickreserve.exception.CustomException;
 import com.baeksh.quickreserve.exception.ErrorCode;
 import com.baeksh.quickreserve.security.JwtTokenProvider;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -81,6 +81,53 @@ public class RestaurantController {
         // 매장 삭제 서비스 호출
         String deletedRestaurant = restaurantService.deleteRestaurant(restaurantName, username);
         return ResponseEntity.ok(deletedRestaurant); // 삭제된 매장 이름 반환
+    }
+    
+    /**
+     * 매장 검색 API
+     * @param query 검색할 매장 이름의 일부 또는 전체
+     * @param pageable 페이징 처리
+     * @return 검색된 매장의 리스트
+     */
+    @GetMapping("/search")
+    public ResponseEntity<?> searchRestaurants(
+            @RequestParam("query") String query,  // 명시적으로 매개변수 이름 지정
+            Pageable pageable) {
+        if (query == null || query.trim().isEmpty()) {
+            throw new CustomException(ErrorCode.INVALID_INPUT);
+        }
+
+        // 매장 검색 서비스 호출
+        Page<RestaurantDto> restaurantPage = restaurantService.searchRestaurants(query, pageable);
+        return ResponseEntity.ok(restaurantPage);
+    }
+    
+    /**
+     * 매장 상세 조회 API
+     * @param restaurantName 매장 이름
+     * @return 매장의 상세 정보
+     */
+    @GetMapping("/restaurant/{restaurantName}")
+    public ResponseEntity<?> getRestaurantDetail(@PathVariable("restaurantName") String restaurantName) {
+        if (restaurantName == null || restaurantName.trim().isEmpty()) {
+            throw new CustomException(ErrorCode.INVALID_INPUT);
+        }
+
+        // 매장 상세 정보 조회 서비스 호출
+        RestaurantDto restaurant = restaurantService.getRestaurantDetail(restaurantName);
+        return ResponseEntity.ok(restaurant);
+    }
+    
+    /**
+     * 매장 전체 리스트 조회 API
+     * @param pageable 페이징 정보
+     * @return 매장의 전체 리스트
+     */
+    @GetMapping
+    public ResponseEntity<?> getAllRestaurants(Pageable pageable) {
+        // 매장 리스트 조회 서비스 호출
+        Page<RestaurantDto> restaurantPage = restaurantService.getAllRestaurants(pageable);
+        return ResponseEntity.ok(restaurantPage);
     }
 
 }

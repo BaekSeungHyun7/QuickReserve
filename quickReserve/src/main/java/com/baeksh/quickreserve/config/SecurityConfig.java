@@ -34,6 +34,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/signup", "/auth/signin").permitAll()
                 .requestMatchers("/restaurants/**").authenticated()
+                .requestMatchers("/reservations/**").hasAuthority("USER")
                 .anyRequest().permitAll()
             )
             .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 필터 추가
