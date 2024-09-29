@@ -21,7 +21,7 @@ dependencies {
     // Spring Boot Web dependency for creating REST APIs
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-// Spring Security 의존성 (JWT와 함께 인증/인가 처리)
+    // Spring Security 의존성 (JWT와 함께 인증/인가 처리)
     implementation 'org.springframework.boot:spring-boot-starter-security'
     
     // Spring Data JPA for working with the database
@@ -33,14 +33,21 @@ dependencies {
     // JWT 관련 라이브러리 추가 (JSON Web Token 사용)
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
     implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
-    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'  // Jackson 기반 파싱 지원
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    
+    //테스트
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // Lombok 라이브러리 (getter/setter 자동 생성 등)
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-
-    // Test 관련 의존성
+    
+    // Spring Boot Test 의존성
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Spring Security Test 의존성 추가
+    testImplementation 'org.springframework.security:spring-security-test'
+
 }
 
 tasks.named('test') {

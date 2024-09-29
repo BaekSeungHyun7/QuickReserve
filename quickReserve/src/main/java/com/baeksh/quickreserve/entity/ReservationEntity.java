@@ -30,5 +30,7 @@ public class ReservationEntity {
 
     private LocalDate date;         // 예약 날짜
     private LocalTime time;         // 예약 시간
+    
+    private boolean approved; //예약 승인 여부
 }
 

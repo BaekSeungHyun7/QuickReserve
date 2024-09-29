@@ -35,6 +35,7 @@ public class AuthService {
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))  // 비밀번호를 암호화하여 저장
                 .roles(request.getRoles())  // 권한 목록 설정
+                .phoneNumber(request.getPhoneNumber()) //전화번호
                 .build();
 
         // DB에 새로운 사용자 저장

@@ -34,7 +34,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/signup", "/auth/signin").permitAll()
                 .requestMatchers("/restaurants/**").authenticated()
-                .requestMatchers("/reservations/**").hasAuthority("USER")
+                .requestMatchers("/reservations/reservation").hasAuthority("USER")  // 일반 사용자는 예약 가능
+                .requestMatchers("/reservations/reservation/{reservationId}").hasRole("ADMIN")  // 관리자만 예약 승인/거절 가능
                 .anyRequest().permitAll()
             )
             .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 필터 추가

@@ -21,7 +21,12 @@ public enum ErrorCode { //Error 코드
     RESERVATION_NOT_FOUND(400, "예약을 찾을 수 없습니다."),
     RESERVATION_OWNER_MISMATCH(400, "예약한 회원이 아닙니다."),
     INVALID_RESERVATION_ID_FORMAT(400, "예약 번호는 8자리 숫자 형식이어야 합니다."),
-    RESERVATION_CANNOT_CANCEL_AFTER_ONE_HOUR(400, "예약 시간 1시간 전까지만 취소 가능합니다.");
+    RESERVATION_CANNOT_CANCEL_AFTER_ONE_HOUR(400, "예약 시간 1시간 전까지만 취소 가능합니다."),
+	NOT_MANAGER(400, "해당 매장의 관리자가 아닙니다."),
+    RESERVATION_TIME_PASSED(400, "이미 방문 인증 시간이 지났습니다."),
+    INVALID_REJECT_REASON(400, "거절 사유가 잘못되었습니다."),
+    RESERVATION_ALREADY_APPROVED(400, "예약이 이미 승인되었습니다."),
+    RESERVATION_ALREADY_REJECTED(400, "예약이 이미 거절되었습니다.");
 	
     private final int status;
     private final String message;

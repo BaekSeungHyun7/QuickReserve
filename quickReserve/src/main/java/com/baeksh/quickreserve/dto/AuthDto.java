@@ -12,6 +12,7 @@ public class AuthDto {
         private String username;  // 사용자 아이디
         private String password;  // 사용자 비밀번호
         private List<String> roles;  // 사용자에게 부여된 역할(권한) 목록 (ADMIN, READ, WRITE)
+        private String phoneNumber; //사용자 전화번호
     }
 
     @Data  // Lombok으로 getter/setter 등 자동 생성
