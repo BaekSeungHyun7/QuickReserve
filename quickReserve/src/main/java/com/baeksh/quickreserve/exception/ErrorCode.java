@@ -26,7 +26,11 @@ public enum ErrorCode { //Error 코드
     RESERVATION_TIME_PASSED(400, "이미 방문 인증 시간이 지났습니다."),
     INVALID_REJECT_REASON(400, "거절 사유가 잘못되었습니다."),
     RESERVATION_ALREADY_APPROVED(400, "예약이 이미 승인되었습니다."),
-    RESERVATION_ALREADY_REJECTED(400, "예약이 이미 거절되었습니다.");
+    RESERVATION_ALREADY_REJECTED(400, "예약이 이미 거절되었습니다."),
+    INVALID_VISIT_TIME(400, "방문 인증 시간이 유효하지 않습니다."),
+    INVALID_RESERVATION_STATUS(400, "승인된 예약이 아닙니다."),
+    INVALID_RESTAURANT(400, "예약한 매장이 아닙니다."),
+    INVALID_USER(400, "예약한 회원과 다릅니다.");
 	
     private final int status;
     private final String message;

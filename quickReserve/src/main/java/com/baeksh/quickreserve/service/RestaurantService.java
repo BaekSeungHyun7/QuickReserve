@@ -18,6 +18,7 @@ import java.util.Optional;
 public class RestaurantService {
 
     private final RestaurantRepository restaurantRepository; // 매장 정보를 관리하는 Repository
+    
     private final UserRepository userRepository; // 사용자 정보를 관리하는 Repository
 
     /**
