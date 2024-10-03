@@ -4,8 +4,8 @@
 - **Java 11+**
 - **Spring Boot 3**
 - **Spring Security (JWT)**
-- **JPA (Hibernate)**
-- **MariaDB (또는 MySQL)**
+- **JPA**
+- **MySQL**
 - **Gradle**
 - **JUnit 5 (테스트)**
 
