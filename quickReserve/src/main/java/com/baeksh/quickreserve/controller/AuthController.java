@@ -11,19 +11,22 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-public class AuthController {
+public class AuthController { 
 
-    //회원 가입 및 로그인 로직을 처리
+    //회원 가입 및 로그인 로직
+	
+	
+	
     private final AuthService authService;
 
     /**
      * 회원 가입 API -> 엔드포인트.
      * @param request 회원 가입 요청에 포함된 아이디, 비밀번호, 권한 정보를 담고 있는 DTO 객체.
-     * @return 성공 시, 가입된 사용자의 아이디를 반환
+     * @return 성공 시 가입된 사용자의 아이디를 반환
      */
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody AuthDto.SignUp request) {
-        // 아이디, 비밀번호, 권한이 null이거나 비어 있으면 예외처리
+        // 아이디, 비밀번호, 권한이 Null이면 예외처리
         if (request.getUsername() == null || request.getPassword() == null || request.getRoles().isEmpty()) {
             throw new CustomException(ErrorCode.INVALID_INPUT);
         }

@@ -21,6 +21,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReservationController {
 
+	//예약 관련 로직
+	
+	
+	
     private final ReservationService reservationService;
     
 

@@ -15,7 +15,7 @@ public class AuthDto {
         private String phoneNumber; //사용자 전화번호
     }
 
-    @Data  // Lombok으로 getter/setter 등 자동 생성
+    @Data
     public static class SignIn {
         // 로그인 시 필요한 필드들 (아이디, 비밀번호)
         private String username;  // 로그인 시 입력받는 사용자 아이디

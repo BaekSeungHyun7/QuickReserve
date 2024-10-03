@@ -7,7 +7,6 @@ import com.baeksh.quickreserve.exception.ErrorCode;
 import com.baeksh.quickreserve.security.JwtTokenProvider;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/restaurants")
 public class RestaurantController {
+	
+	//매장 관련 비즈니스 로직을 처리
 
 	private final JwtTokenProvider jwtTokenProvider;
-    private final RestaurantService restaurantService; // 매장 관련 비즈니스 로직을 처리하는 서비스 클래스
+    private final RestaurantService restaurantService;
 
     @Autowired
     public RestaurantController(JwtTokenProvider jwtTokenProvider, RestaurantService restaurantService) {

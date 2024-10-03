@@ -29,7 +29,7 @@ public class UserEntity {
     
     private String phoneNumber;  // 전화번호
     
-    // 매장 소유자인지 확인하는 메서드 추가
+    // 매장 소유자인지 확인하는 메서드
     public boolean isOwnerOf(RestaurantEntity restaurant) {
         return this.restaurants.contains(restaurant);
     }

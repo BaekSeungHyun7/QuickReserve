@@ -16,6 +16,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class ReservationEntity {
 
+	//~241004 0731
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
