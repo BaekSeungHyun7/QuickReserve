@@ -30,7 +30,8 @@ public enum ErrorCode { //Error 코드
     INVALID_VISIT_TIME(400, "방문 인증 시간이 유효하지 않습니다."),
     INVALID_RESERVATION_STATUS(400, "승인된 예약이 아닙니다."),
     INVALID_RESTAURANT(400, "예약한 매장이 아닙니다."),
-    INVALID_USER(400, "예약한 회원과 다릅니다.");
+    INVALID_USER(400, "예약한 회원과 다릅니다."),
+    REVIEW_NOT_FOUND(400, "리뷰를 찾을 수 없습니다.");
 	
     private final int status;
     private final String message;

@@ -34,5 +34,6 @@ public class ReservationEntity {
     private boolean approved; //예약 승인 여부
     
     private boolean visited;  // 방문 인증 여부
+    
 }
 

@@ -28,5 +28,10 @@ public class RestaurantEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private UserEntity owner; // 점장
+    
+    // 매장 소유자인지 확인하는 메서드
+    public boolean isOwnedBy(UserEntity user) {
+        return this.owner.equals(user);
+    }
 }
 

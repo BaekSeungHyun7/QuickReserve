@@ -28,5 +28,10 @@ public class UserEntity {
     private List<RestaurantEntity> restaurants;  // 매장과의 연관관계 (1:N)
     
     private String phoneNumber;  // 전화번호
+    
+    // 매장 소유자인지 확인하는 메서드 추가
+    public boolean isOwnerOf(RestaurantEntity restaurant) {
+        return this.restaurants.contains(restaurant);
+    }
 }
 
