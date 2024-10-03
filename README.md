@@ -126,3 +126,7 @@
 - **401 Unauthorized**: 인증되지 않은 사용자일 경우 반환.
 - **403 Forbidden**: 권한이 없는 사용자일 경우 반환.
 - **404 Not Found**: 요청한 리소스가 존재하지 않을 경우 반환.
+
+
+## ERD
+![erd4](https://github.com/user-attachments/assets/e2e897e3-3f81-4dd0-8895-43a8e1e8f284)
