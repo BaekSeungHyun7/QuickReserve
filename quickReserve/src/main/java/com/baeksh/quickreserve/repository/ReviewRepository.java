@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
-    List<ReviewEntity> findByRestaurantId(Long restaurantId);  // 매장의 리뷰 목록 조회
+	// 매장의 리뷰 목록 조회
+    List<ReviewEntity> findByRestaurantId(Long restaurantId);
 }

@@ -155,5 +155,26 @@ public class ReservationControllerTest {
                 .header("Authorization", "Bearer dummy-jwt-token"))  // JWT 토큰 필요 시 추가
                 .andExpect(status().isOk());
     }
+    
+    
+    /*7.
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * */
+    
+    /**/
+    
+    /**/
 }
 

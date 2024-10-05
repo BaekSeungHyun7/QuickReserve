@@ -9,7 +9,7 @@ public class QuickReserveApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(QuickReserveApplication.class, args);
 		
-		//테스트1 0928
+		//1006
 	}
 
 }
